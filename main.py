@@ -22,13 +22,19 @@ def get_n_columns(mat): #COMPLETE
             counter += 1
     return int(counter/rowCount)
 
-def remove_column(mat, column):
-    '''Removes the specified column from the inputted matrix'''
+def remove_column(mat, column): #COMPLETE
+    '''Removes the specified column from the inputted matrix.'''
     for row in mat:
         for val in row:
             if row.index(val) == column - 1:
-                row.pop(val)
+                row.remove(val)
     return mat
+
+def remove_row(mat, row): #COMPLETE
+    '''Removes the specified row from the inputted matrix.'''
+    mat.pop(row-1)
+    return mat
+
 
 def rref(mat): #INCOMPLETE
 
@@ -47,11 +53,15 @@ def det(mat): #INCOMPLETE
 
     else: #matrix is square case
         while len(mat) != 2:#reduction of the matrix until it is 2 by 2
-            for element in mat[0]:
-                column = element.index()
-                newmat = mat.pop(element)
+            for element in mat[0]: #always goes along the first row
+                ind = mat[0].index(element)
+                newmat = mat #remakes the original matrix to the original
+                remove_column(newmat, ind)
+                remove_row(newmat, ind)
+                
 
-        return det(newmat)
+
+        return result
 
 
 
